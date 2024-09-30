@@ -1,11 +1,11 @@
-import '@boiler/ui-library/dist/';
+import '@boiler/ui-library';
 
-import { BlrInputFieldTextRenderFunction } from './renderFunction';
-import type { BlrInputFieldTextType } from '.';
+import { BlrInputFieldTextRenderFunction } from './renderFunction.js';
+import type { BlrInputFieldTextType } from './index.js';
 
 import { fixture, expect } from '@open-wc/testing';
 import { querySelectorAllDeep, querySelectorDeep } from 'query-selector-shadow-dom';
-import { getRandomString } from '../../utils/get-random.string';
+import { getRandomString } from '../../utils/get-random.string.js';
 
 const sampleParams: BlrInputFieldTextType = {
   theme: 'Light',
@@ -17,7 +17,6 @@ const sampleParams: BlrInputFieldTextType = {
   hasLabel: true,
   label: 'Label',
   labelAppendix: '(Appendix)',
-  hasIcon: true,
   icon: 'blr360',
   hasHint: false,
   hintMessage: 'This is a small hint message',
@@ -26,7 +25,7 @@ const sampleParams: BlrInputFieldTextType = {
   readonly: false,
   required: false,
   hasError: false,
-  errorMessage: '',
+  errorMessage: "OMG it's an error",
   errorMessageIcon: 'blrInfo',
   arialabel: 'InputFieldText',
   inputFieldTextId: 'Input Id',
@@ -119,6 +118,22 @@ describe('blr-input-field-text', () => {
 
     expect(hintClassName).to.contain('hint');
     expect(errorClassName).to.contain('error');
+  });
+
+  it('has error Icon set to undefined', async () => {
+    const element = await fixture(
+      BlrInputFieldTextRenderFunction({
+        ...sampleParams,
+        hasHint: false,
+        hasError: true,
+        errorMessage: 'error',
+        errorMessageIcon: undefined,
+      })
+    );
+
+    const formCaption = querySelectorDeep('.blr-form-caption', element?.getRootNode() as HTMLElement);
+    const errorIcon = querySelectorDeep('blr-icon', formCaption?.getRootNode() as HTMLElement);
+    expect(errorIcon).to.not.exist;
   });
 
   it('has a size md by default', async () => {

@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
-import { BlrInputFieldTextType } from './index';
-import { BlrInputFieldTextRenderFunction } from './renderFunction';
-import { FormSizes, InputTypes } from '../../globals/constants';
+import { BlrInputFieldTextType } from './index.js';
+import { BlrInputFieldTextRenderFunction } from './renderFunction.js';
+import { FormSizes, InputTypes } from '../../globals/constants.js';
 import { PureIconKeys } from '@boiler/icons';
-import { Themes } from '../../foundation/_tokens-generated/index.themes';
+import { Themes } from '../../foundation/_tokens-generated/index.themes.js';
 import { html } from 'lit-html';
 
 // this loads the all components instances and registers their html tags
-import '../../index';
+import '../../index.js';
 
 // Shared Style inside the Stories
 const sharedStyles = html`
@@ -111,19 +111,10 @@ export default {
       },
       if: { arg: 'hasLabel', eq: true },
     },
-    hasIcon: {
-      description: 'Choose if component has an icon.',
-      options: [undefined, ...PureIconKeys],
-      control: { type: 'boolean' },
-      table: {
-        category: 'Content / Settings',
-      },
-    },
     icon: {
       description: 'Select an icon which is displayed inside of the input.',
       options: [undefined, ...PureIconKeys],
       control: { type: 'select' },
-      if: { arg: 'hasIcon', eq: true },
       table: {
         category: 'Content / Settings',
       },
@@ -323,7 +314,6 @@ const defaultParams: BlrInputFieldTextType = {
   hasLabel: true,
   label: 'Label-text',
   labelAppendix: '(Appendix)',
-  hasIcon: true,
   icon: 'blr360',
   hasHint: false,
   hintMessage: 'This is a small hint message',
@@ -333,7 +323,7 @@ const defaultParams: BlrInputFieldTextType = {
   required: false,
   hasError: false,
   errorMessage: '',
-  errorMessageIcon: 'blrInfo',
+  errorMessageIcon: undefined,
   arialabel: 'InputFieldText',
   name: 'InputFieldText',
   inputFieldTextId: 'Input Id',
@@ -403,7 +393,7 @@ export const SizeVariant = () => {
           theme: 'Light',
           sizeVariant: 'sm',
           label: 'Input Field Text SM',
-          hasIcon: false,
+          icon: undefined,
           placeholder: '',
           value: '',
         })}
@@ -412,7 +402,7 @@ export const SizeVariant = () => {
           theme: 'Light',
           sizeVariant: 'md',
           label: 'Input Field Text MD',
-          hasIcon: false,
+          icon: undefined,
           placeholder: '',
           value: '',
         })}
@@ -421,7 +411,7 @@ export const SizeVariant = () => {
           theme: 'Light',
           sizeVariant: 'lg',
           label: 'Input Field Text LG',
-          hasIcon: false,
+          icon: undefined,
           placeholder: '',
           value: '',
         })}
@@ -440,7 +430,7 @@ SizeVariant.story = {
 /**
  * ## Content / Settings
  * ### Type
- * The Input Field Text component can have all the types an html input can have, except the number and the unit type, which is covered in the Input Field Number component. For more information have a look at the [Input Field Number](/docs/design-system-web-components-forms-input-field-number--docs) component.
+ * The Input Field Text component can have all the types an html input can have, except the number and the unit type, which is covered in the Input Field Number component. For more information have a look at the [Input Field Number](/docs/components-input-field-number--docs) component.
  */
 export const Type = () => {
   return html`
@@ -453,7 +443,7 @@ export const Type = () => {
           type: 'text',
           sizeVariant: 'md',
           label: 'Enter text',
-          hasIcon: false,
+          icon: undefined,
           labelAppendix: '',
           placeholder: '',
           value: '',
@@ -493,7 +483,7 @@ export const Placeholder = () => {
           sizeVariant: 'md',
           label: 'With placeholder',
           placeholder: 'Add a message here',
-          hasIcon: false,
+          icon: undefined,
           labelAppendix: '',
           value: '',
         })}
@@ -503,7 +493,7 @@ export const Placeholder = () => {
           sizeVariant: 'md',
           label: 'Without placeholder',
           labelAppendix: '',
-          hasIcon: false,
+          icon: undefined,
           placeholder: '',
           value: '',
         })}
@@ -532,7 +522,7 @@ export const Disabled = () => {
           theme: 'Light',
           sizeVariant: 'md',
           label: 'Disabled',
-          hasIcon: false,
+          icon: undefined,
           placeholder: '',
           labelAppendix: '',
           disabled: true,
@@ -563,7 +553,7 @@ export const Readonly = () => {
           sizeVariant: 'md',
           label: 'Readonly',
           readonly: true,
-          hasIcon: false,
+          icon: undefined,
           placeholder: '',
           value: '',
         })}
@@ -593,7 +583,7 @@ export const Required = () => {
           placeholder: '',
           label: 'Label-text',
           labelAppendix: '(required)',
-          hasIcon: false,
+          icon: undefined,
           value: '',
         })}
       </div>
@@ -644,7 +634,7 @@ HasError.argTypes = {
 /**
  * ## Dependencies
  * ### Form Label
- * The Input Field Text component can display an optional Form Label component, consisting of a label and a label appendix. For more information have a look at the internal [Form Label](?path=/docs/design-system-web-components-internal-components-formlabel--docs) component.
+ * The Input Field Text component can display an optional Form Label component, consisting of a label and a label appendix. For more information have a look at the internal [Form Label](?path=/docs/components-form-label--docs) component.
  */
 export const FormLabel = () => {
   return html`
@@ -658,7 +648,7 @@ export const FormLabel = () => {
           placeholder: '',
           label: 'Label',
           labelAppendix: '(Appendix)',
-          hasIcon: false,
+          icon: undefined,
           value: '',
         })}
       </div>
@@ -672,7 +662,7 @@ FormLabel.story = {
   name: ' ',
 };
 /**
- * The Input Field Text component can have a trailing clickable Icon / Button Icon component. This could be used for example to show or hide the input, when it is used to enter a password. For more information have a look at the [Icon](?path=/docs/design-system-web-components-ui-icon--docs) component.
+ * The Input Field Text component can have a trailing clickable Icon / Button Icon component. This could be used for example to show or hide the input, when it is used to enter a password. For more information have a look at the [Icon](?path=/docs/components-icon--docs) component.
  */
 export const Icon = () => {
   return html`
@@ -695,7 +685,7 @@ export const Icon = () => {
           sizeVariant: 'md',
           placeholder: '',
           label: 'Without Icon',
-          hasIcon: false,
+          icon: undefined,
           labelAppendix: '',
           value: '',
         })}
@@ -707,7 +697,7 @@ Icon.argTypes = {
   ...disabledArgTypes,
 };
 /**
- * The Form Caption Group component can display an optional hint message and error message with or without icons. Both captions can be combined. For more information have a look at the internal [Form Caption Group](/docs/design-system-web-components-internal-components-formcaptiongroup--docs) component.
+ * The Form Caption Group component can display an optional hint message and error message with or without icons. Both captions can be combined. For more information have a look at the internal [Form Caption Group](/docs/components-form-caption-group--docs) component.
  */
 export const FormCaptionGroup = () => {
   return html`
@@ -722,7 +712,7 @@ export const FormCaptionGroup = () => {
           label: 'Hint message',
           labelAppendix: '',
           hasHint: true,
-          hasIcon: false,
+          icon: undefined,
           value: '',
         })}
         ${BlrInputFieldTextRenderFunction({
@@ -733,10 +723,11 @@ export const FormCaptionGroup = () => {
           label: ' Hint and error message',
           labelAppendix: '',
           hasHint: true,
+          hintMessage: 'This is a small hint',
           hasError: true,
           errorMessage: "OMG it's an error",
           errorMessageIcon: 'blrErrorFilled',
-          hasIcon: false,
+          icon: undefined,
           value: '',
         })}
       </div>

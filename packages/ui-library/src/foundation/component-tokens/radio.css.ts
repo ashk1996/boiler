@@ -1,11 +1,8 @@
-import { typeSafeNestedCss } from "../../utils/nested-typesafe-css-literals";
+import { css } from "../../utils/css-in-ts/nested-typesafe-css-literals.js";
 
-import { renderThemedCssStrings } from "../_tokens-generated/index.pseudo.generated";
+import { ComponentThemeIterator } from "../_tokens-generated/index.pseudo.generated.js";
 
-export const { tokenizedLight: radioLight, tokenizedDark: radioDark } = renderThemedCssStrings((componentTokens) => {
-  const { Radio, RadioGroup, FormLabel, CaptionComponent } = componentTokens.cmp;
-
-  /* ToDos:
+/* ToDos:
 
   - [ ] seperate radio/radio group css and move them to their component folders
   - [ ] Fix margin of caption-group
@@ -20,498 +17,500 @@ export const { tokenizedLight: radioLight, tokenizedDark: radioDark } = renderTh
 
   */
 
-  return typeSafeNestedCss`
-    .blr-legend-wrapper {
-      &.sm {
-        padding-bottom: ${RadioGroup.LegendWrapper.PaddingBottom.SM};
+export const staticStyles = css`
+  ${ComponentThemeIterator((theme, cmp, css) => {
+    const { radio, radiogroup, formlabel, formcaption } = cmp;
+
+    return css`
+      .blr-legend-wrapper.${theme} {
+        &.sm {
+          padding-bottom: ${radiogroup.legendwrapper.paddingbottom.sm};
+        }
+
+        &.md {
+          padding-bottom: ${radiogroup.legendwrapper.paddingbottom.md};
+        }
+
+        &.lg {
+          padding-bottom: ${radiogroup.legendwrapper.paddingbottom.lg};
+        }
+
+        .blr-legend {
+          ${
+            // to override constructed css
+            ""
+          }
+          margin: 0 !important;
+          color: ${radiogroup.legend.textcolor.default};
+
+          &.sm {
+            font-weight: ${radiogroup.legend.sm.fontWeight};
+            font-size: ${radiogroup.legend.sm.fontSize};
+            font-family: ${radiogroup.legend.sm.fontFamily}, sans-serif;
+            line-height: ${radiogroup.legend.sm.lineHeight};
+          }
+
+          &.md {
+            font-weight: ${radiogroup.legend.md.fontWeight};
+            font-size: ${radiogroup.legend.md.fontSize};
+            font-family: ${radiogroup.legend.md.fontFamily}, sans-serif;
+            line-height: ${radiogroup.legend.md.lineHeight};
+          }
+
+          &.lg {
+            font-weight: ${radiogroup.legend.lg.fontWeight};
+            font-size: ${radiogroup.legend.lg.fontSize};
+            font-family: ${radiogroup.legend.lg.fontFamily}, sans-serif;
+            line-height: ${radiogroup.legend.lg.lineHeight};
+          }
+
+          &.error {
+            color: ${radiogroup.legend.textcolor.error};
+          }
+        }
       }
 
-      &.md {
-        padding-bottom: ${RadioGroup.LegendWrapper.PaddingBottom.MD};
-      }
-
-      &.lg {
-        padding-bottom: ${RadioGroup.LegendWrapper.PaddingBottom.LG};
-      }
-
-      .blr-legend {
+      .caption-group.${theme} {
         ${
-          // to override constructed css
+          // To override constructed margin
           ""
         }
-        margin: 0 !important;
-        color: ${RadioGroup.Legend.textcolor.default};
+        all: initial;
+        margin: 0;
 
         &.sm {
-          font-weight: ${RadioGroup.Legend.SM.fontWeight};
-          font-size: ${RadioGroup.Legend.SM.fontSize};
-          font-family: ${RadioGroup.Legend.SM.fontFamily}, sans-serif;
-          line-height: ${RadioGroup.Legend.SM.lineHeight};
+          ${
+            // Can be merged with the .caption-group above
+            ""
+          }
+          padding-top: ${radiogroup.captionslot.paddingtop.sm};
         }
-  
+
         &.md {
-          font-weight: ${RadioGroup.Legend.MD.fontWeight};
-          font-size: ${RadioGroup.Legend.MD.fontSize};
-          font-family: ${RadioGroup.Legend.MD.fontFamily}, sans-serif;
-          line-height: ${RadioGroup.Legend.MD.lineHeight};
+          ${
+            // Can be merged with the .caption-group above
+            ""
+          }
+          padding-top: ${radiogroup.captionslot.paddingtop.md};
         }
-  
+
         &.lg {
-          font-weight: ${RadioGroup.Legend.LG.fontWeight};
-          font-size: ${RadioGroup.Legend.LG.fontSize};
-          font-family: ${RadioGroup.Legend.LG.fontFamily}, sans-serif;
-          line-height: ${RadioGroup.Legend.LG.lineHeight};
-        }
-  
-        &.error {
-          color: ${RadioGroup.Legend.textcolor.error};
+          ${
+            // Can be merged with the .caption-group above
+            ""
+          }
+          padding-top: ${radiogroup.captionslot.paddingtop.lg};
         }
       }
-    }
 
-    .caption-group {
-      ${
-        // To override constructed margin
-        ""
-      }
-      all: initial;
-      margin: 0;
-    
-      &.sm {
-        ${
-          // Can be merged with the .caption-group above
-          ""
-        }
-        padding-top: ${RadioGroup.CaptionSlot.PaddingTop.SM};
-      }
-
-      &.md {
-        ${
-          // Can be merged with the .caption-group above
-          ""
-        }
-        padding-top: ${RadioGroup.CaptionSlot.PaddingTop.MD};
-      }
-
-      &.lg {
-        ${
-          // Can be merged with the .caption-group above
-          ""
-        }
-        padding-top: ${RadioGroup.CaptionSlot.PaddingTop.LG};
-      }
-    }
-
-    .blr-radio-group {
-      display: flex;
-      align-items: flex-start;
-      position: relative;
-      flex-flow: nowrap;
-      justify-content: space-between;
-
-      &.vertical {
-        flex-direction: column;
-      }
-
-      &.sm {
-        _FIX_: "We need to differentiate between horizontal and vertical gaps, but this seems all wrong anyhow";
-        column-gap: ${RadioGroup.RadioStackHorizontal.ItemSpacing.SM};
-        row-gap: ${RadioGroup.RadioStackVertical.ItemSpacing.SM};
-      }
-
-      &.md {
-        _FIX_: "We need to differentiate between horizontal and vertical gaps, but this seems all wrong anyhow";
-        column-gap: ${RadioGroup.RadioStackHorizontal.ItemSpacing.MD};
-        row-gap: ${RadioGroup.RadioStackVertical.ItemSpacing.MD};
-      }
-
-      &.lg {
-        _FIX_: "We need to differentiate between horizontal and vertical gaps, but this seems all wrong anyhow";
-        column-gap: ${RadioGroup.RadioStackHorizontal.ItemSpacing.LG};
-        row-gap: ${RadioGroup.RadioStackVertical.ItemSpacing.LG};
-      }
-    }
-
-    .blr-radio {
-      _FIX_: To override constructed margin;
-      all: initial;
-      margin: 0 !important;
-      display: flex;
-      flex-grow: 1;
-      transition: all 0.25s ease 0s;
-
-      .blr-form-label-inline {
-        _FIX?_: "LabelNextToControl states";
-        color: ${FormLabel.InlineLabel.TextColor.Rest};
-        transition: all 0.25s ease 0s;
+      .blr-radio-group.${theme} {
         display: flex;
-        align-items: center;
-      }
-
-      .input-control {
+        align-items: flex-start;
         position: relative;
-        transition: all 0.25s ease 0s;
-        appearance: none;
-        margin: 0;
-        border-radius: ${Radio.Control.Container.BorderRadius};
-        display: grid;
-        place-content: center;
+        flex-flow: nowrap;
+        justify-content: space-between;
 
-        &::before {
-          content: "";
-          transition: all 0.25s ease 0s;
-          border-radius: ${Radio.Control.Container.BorderRadius};
+        &.vertical {
+          flex-direction: column;
+        }
+
+        &.sm {
+          column-gap: ${radiogroup.radiostackhorizontal.itemspacing.sm};
+          row-gap: ${radiogroup.radiostackvertical.itemspacing.sm};
+        }
+
+        &.md {
+          column-gap: ${radiogroup.radiostackhorizontal.itemspacing.md};
+          row-gap: ${radiogroup.radiostackvertical.itemspacing.md};
+        }
+
+        &.lg {
+          column-gap: ${radiogroup.radiostackhorizontal.itemspacing.lg};
+          row-gap: ${radiogroup.radiostackvertical.itemspacing.lg};
         }
       }
 
-      .label-wrapper {
+      .blr-radio.${theme} {
+        all: initial;
+        margin: 0 !important;
         display: flex;
-        flex-direction: column;
+        flex-grow: 1;
+        transition: all 0.25s ease 0s;
 
-        .caption-wrapper {
-          flex-basis: 100%;
-
-          .blr-form-caption {
-            gap: 0;
-          }
+        .blr-form-label-inline {
+          color: ${formlabel.inlinelabel.textcolor.rest};
+          transition: all 0.25s ease 0s;
+          display: flex;
+          align-items: center;
         }
-      }
-
-      &.sm {
-        gap: ${Radio.ContentRow.ItemSpacing.SM};
-        padding: ${Radio.ContentRow.Padding.SM};
 
         .input-control {
-          margin-top: ${Radio.ControlWrapper.PaddingTop.SM};
-        }
-
-        .label-wrapper {
-          padding-top: ${Radio.ContentCol.PaddingTop.SM};
-          gap: ${Radio.ContentCol.ItemSpacing.SM};
-
-          .caption-wrapper {
-            padding: ${CaptionComponent.Container.Padding.SM};
-            gap: ${CaptionComponent.Container.ItemSpacing.SM};
-          }
-
-          .blr-form-label-inline {
-            font-family: ${FormLabel.InlineLabel.Typography.SM.fontFamily}, sans-serif;
-            font-weight: ${FormLabel.InlineLabel.Typography.SM.fontWeight};
-            line-height: ${FormLabel.InlineLabel.Typography.SM.lineHeight};
-            font-size: ${FormLabel.InlineLabel.Typography.SM.fontSize};
-          }
-        }
-      }
-
-      &.md {
-        gap: ${Radio.ContentRow.ItemSpacing.MD};
-        padding: ${Radio.ContentRow.Padding.MD};
-
-        .input-control {
-          margin-top: ${Radio.ControlWrapper.PaddingTop.MD};
-        }
-
-        .label-wrapper {
-          padding-top: ${Radio.ContentCol.PaddingTop.MD};
-          gap: ${Radio.ContentCol.ItemSpacing.MD};
-
-          .caption-wrapper {
-            padding: ${CaptionComponent.Container.Padding.MD};
-            gap: ${CaptionComponent.Container.ItemSpacing.MD};
-          }
-
-          .blr-form-label-inline {
-            font-family: ${FormLabel.InlineLabel.Typography.MD.fontFamily}, sans-serif;
-            font-weight: ${FormLabel.InlineLabel.Typography.MD.fontWeight};
-            line-height: ${FormLabel.InlineLabel.Typography.MD.lineHeight};
-            font-size: ${FormLabel.InlineLabel.Typography.MD.fontSize};
-          }
-        }
-      }
-
-      &.lg {
-        gap: ${Radio.ContentRow.ItemSpacing.LG};
-        padding: ${Radio.ContentRow.Padding.LG};
-
-        .input-control {
-          margin-top: ${Radio.ControlWrapper.PaddingTop.LG};
-        }
-
-        .label-wrapper {
-          padding-top: ${Radio.ContentCol.PaddingTop.LG};
-          gap: ${Radio.ContentCol.ItemSpacing.LG};
-
-          .caption-wrapper {
-            padding: ${CaptionComponent.Container.Padding.LG};
-            gap: ${CaptionComponent.Container.ItemSpacing.LG};
-          }
-
-          .blr-form-label-inline {
-            font-family: ${FormLabel.InlineLabel.Typography.LG.fontFamily}, sans-serif;
-            font-weight: ${FormLabel.InlineLabel.Typography.LG.fontWeight};
-            line-height: ${FormLabel.InlineLabel.Typography.LG.lineHeight};
-            font-size: ${FormLabel.InlineLabel.Typography.LG.fontSize};
-          }
-        }
-      }
-
-      .input-control {
-        background-color: ${Radio.Control.Container.BackgroundColor.Inactive.Rest};
-        width: ${Radio.Control.Container.Size.SM};
-        min-width: ${Radio.Control.Container.Size.SM};
-        height: ${Radio.Control.Container.Size.SM};
-        min-height: ${Radio.Control.Container.Size.SM};
-
-        &::before {
-          background-color: ${Radio.Control.Icon.IconColor.Inactive.Rest};
-          width: ${Radio.Control.Icon.IconSize.SM.Inactive.Rest};
-          height: ${Radio.Control.Icon.IconSize.SM.Inactive.Rest};
-        }
-
-        &:not(.disabled):not(.readonly) {
-          &:hover {
-            background-color: ${Radio.Control.Container.BackgroundColor.Inactive.Hover};
-            
-            &::before {
-              content: "";
-              background-color: ${Radio.Control.Icon.IconColor.Inactive.Hover};
-              width: ${Radio.Control.Icon.IconSize.SM.Inactive.Hover};
-              height: ${Radio.Control.Icon.IconSize.SM.Inactive.Hover};
-            }
-
-            & + .label-wrapper {
-              .blr-form-label-inline {
-                color: ${FormLabel.InlineLabel.TextColor.Hover};
-              }
-            }
-          }
-        
-          &:active {
-            background-color: ${Radio.Control.Container.BackgroundColor.Inactive.Pressed};
-
-            &::before {
-              content: "";
-              background-color: ${Radio.Control.Icon.IconColor.Inactive.Pressed};
-              width: ${Radio.Control.Icon.IconSize.SM.Inactive.Pressed};
-              height: ${Radio.Control.Icon.IconSize.SM.Inactive.Pressed};
-            }
-
-            & + .label-wrapper {
-              .blr-form-label-inline {
-                color: ${FormLabel.InlineLabel.TextColor.Pressed};
-              }
-            }
-          }
-
-          &:focus {
-            background-color: ${Radio.Control.Container.BackgroundColor.Inactive.Focus};
-            _FIX_: "needs focus ring";
-            outline: black solid 2px;
-            outline-offset: 2px;
-
-            &::before {
-              content: "";
-              background-color: ${Radio.Control.Icon.IconColor.Inactive.Focus};
-              width: ${Radio.Control.Icon.IconSize.SM.Inactive.Focus};
-              height: ${Radio.Control.Icon.IconSize.SM.Inactive.Focus};
-            }
-
-            & + .label-wrapper {
-              .blr-form-label-inline {
-                color: ${FormLabel.InlineLabel.TextColor.Focus};
-              }
-            }
-          }
-        }
-
-        &.checked, &:checked {
-          background-color: ${Radio.Control.Container.BackgroundColor.Active.Rest};
+          position: relative;
+          transition: all 0.25s ease 0s;
+          appearance: none;
+          margin: 0;
+          border-radius: ${radio.control.container.borderradius};
+          display: grid;
+          place-content: center;
 
           &::before {
             content: "";
-            background-color: ${Radio.Control.Icon.IconColor.Active.Rest};
-            width: ${Radio.Control.Icon.IconSize.SM.Active.Rest};
-            height: ${Radio.Control.Icon.IconSize.SM.Active.Rest};
+            transition: all 0.25s ease 0s;
+            border-radius: ${radio.control.container.borderradius};
+          }
+        }
+
+        .label-wrapper {
+          display: flex;
+          flex-direction: column;
+
+          .caption-wrapper {
+            flex-basis: 100%;
+
+            .blr-form-caption {
+              gap: 0;
+            }
+          }
+        }
+
+        &.sm {
+          gap: ${radio.contentrow.itemspacing.sm};
+          padding: ${radio.contentrow.padding.sm};
+
+          .input-control {
+            margin-top: ${radio.controlwrapper.paddingtop.sm};
           }
 
-          &:not(.disabled):not(.readonly) {
+          .label-wrapper {
+            padding-top: ${radio.contentcol.paddingtop.sm};
+            gap: ${radio.contentcol.itemspacing.sm};
+
+            .caption-wrapper {
+              padding: ${formcaption.container.padding.sm};
+              gap: ${formcaption.container.itemspacing.sm};
+            }
+
+            .blr-form-label-inline {
+              font-family: ${formlabel.inlinelabel.typography.sm.fontFamily}, sans-serif;
+              font-weight: ${formlabel.inlinelabel.typography.sm.fontWeight};
+              line-height: ${formlabel.inlinelabel.typography.sm.lineHeight};
+              font-size: ${formlabel.inlinelabel.typography.sm.fontSize};
+            }
+          }
+        }
+
+        &.md {
+          gap: ${radio.contentrow.itemspacing.md};
+          padding: ${radio.contentrow.padding.md};
+
+          .input-control {
+            margin-top: ${radio.controlwrapper.paddingtop.md};
+          }
+
+          .label-wrapper {
+            padding-top: ${radio.contentcol.paddingtop.md};
+            gap: ${radio.contentcol.itemspacing.md};
+
+            .caption-wrapper {
+              padding: ${formcaption.container.padding.md};
+              gap: ${formcaption.container.itemspacing.md};
+            }
+
+            .blr-form-label-inline {
+              font-family: ${formlabel.inlinelabel.typography.md.fontFamily}, sans-serif;
+              font-weight: ${formlabel.inlinelabel.typography.md.fontWeight};
+              line-height: ${formlabel.inlinelabel.typography.md.lineHeight};
+              font-size: ${formlabel.inlinelabel.typography.md.fontSize};
+            }
+          }
+        }
+
+        &.lg {
+          gap: ${radio.contentrow.itemspacing.lg};
+          padding: ${radio.contentrow.padding.lg};
+
+          .input-control {
+            margin-top: ${radio.controlwrapper.paddingtop.lg};
+          }
+
+          .label-wrapper {
+            padding-top: ${radio.contentcol.paddingtop.lg};
+            gap: ${radio.contentcol.itemspacing.lg};
+
+            .caption-wrapper {
+              padding: ${formcaption.container.padding.lg};
+              gap: ${formcaption.container.itemspacing.lg};
+            }
+
+            .blr-form-label-inline {
+              font-family: ${formlabel.inlinelabel.typography.lg.fontFamily}, sans-serif;
+              font-weight: ${formlabel.inlinelabel.typography.lg.fontWeight};
+              line-height: ${formlabel.inlinelabel.typography.lg.lineHeight};
+              font-size: ${formlabel.inlinelabel.typography.lg.fontSize};
+            }
+          }
+        }
+
+        .input-control {
+          background-color: ${radio.control.container.bgcolor.inactive.rest};
+          width: ${radio.control.container.size.sm};
+          min-width: ${radio.control.container.size.sm};
+          height: ${radio.control.container.size.sm};
+          min-height: ${radio.control.container.size.sm};
+
+          &::before {
+            background-color: ${radio.control.icon.iconcolor.inactive.rest};
+            width: ${radio.control.icon.iconsize.sm.inactive.rest};
+            height: ${radio.control.icon.iconsize.sm.inactive.rest};
+          }
+
+          &:not(.disabled, .readonly) {
             &:hover {
-              background-color: ${Radio.Control.Container.BackgroundColor.Active.Hover};
+              background-color: ${radio.control.container.bgcolor.inactive.hover};
 
               &::before {
                 content: "";
-                background-color: ${Radio.Control.Icon.IconColor.Active.Hover};
-                width: ${Radio.Control.Icon.IconSize.SM.Active.Hover};
-                height: ${Radio.Control.Icon.IconSize.SM.Active.Hover};
+                background-color: ${radio.control.icon.iconcolor.inactive.hover};
+                width: ${radio.control.icon.iconsize.sm.inactive.hover};
+                height: ${radio.control.icon.iconsize.sm.inactive.hover};
+              }
+
+              & + .label-wrapper {
+                .blr-form-label-inline {
+                  color: ${formlabel.inlinelabel.textcolor.hover};
+                }
               }
             }
 
             &:active {
-              background-color: ${Radio.Control.Container.BackgroundColor.Active.Pressed};
-              
+              background-color: ${radio.control.container.bgcolor.inactive.pressed};
+
               &::before {
                 content: "";
-                background-color: ${Radio.Control.Icon.IconColor.Active.Pressed};
-                width: ${Radio.Control.Icon.IconSize.SM.Active.Pressed};
-                height: ${Radio.Control.Icon.IconSize.SM.Active.Pressed};
+                background-color: ${radio.control.icon.iconcolor.inactive.pressed};
+                width: ${radio.control.icon.iconsize.sm.inactive.pressed};
+                height: ${radio.control.icon.iconsize.sm.inactive.pressed};
+              }
+
+              & + .label-wrapper {
+                .blr-form-label-inline {
+                  color: ${formlabel.inlinelabel.textcolor.pressed};
+                }
               }
             }
 
             &:focus {
-              background-color: ${Radio.Control.Container.BackgroundColor.Active.Focus};
-              
+              background-color: ${radio.control.container.bgcolor.inactive.focus};
+              outline: black solid 2px;
+              outline-offset: 2px;
+
               &::before {
                 content: "";
-                background-color: ${Radio.Control.Icon.IconColor.Active.Focus};
-                width: ${Radio.Control.Icon.IconSize.SM.Active.Focus};
-                height: ${Radio.Control.Icon.IconSize.SM.Active.Focus};
+                background-color: ${radio.control.icon.iconcolor.inactive.focus};
+                width: ${radio.control.icon.iconsize.sm.inactive.focus};
+                height: ${radio.control.icon.iconsize.sm.inactive.focus};
+              }
+
+              & + .label-wrapper {
+                .blr-form-label-inline {
+                  color: ${formlabel.inlinelabel.textcolor.focus};
+                }
+              }
+            }
+          }
+
+          &.checked,
+          &:checked {
+            background-color: ${radio.control.container.bgcolor.active.rest};
+
+            &::before {
+              content: "";
+              background-color: ${radio.control.icon.iconcolor.active.rest};
+              width: ${radio.control.icon.iconsize.sm.active.rest};
+              height: ${radio.control.icon.iconsize.sm.active.rest};
+            }
+
+            &:not(.disabled, .readonly) {
+              &:hover {
+                background-color: ${radio.control.container.bgcolor.active.hover};
+
+                &::before {
+                  content: "";
+                  background-color: ${radio.control.icon.iconcolor.active.hover};
+                  width: ${radio.control.icon.iconsize.sm.active.hover};
+                  height: ${radio.control.icon.iconsize.sm.active.hover};
+                }
+              }
+
+              &:active {
+                background-color: ${radio.control.container.bgcolor.active.pressed};
+
+                &::before {
+                  content: "";
+                  background-color: ${radio.control.icon.iconcolor.active.pressed};
+                  width: ${radio.control.icon.iconsize.sm.active.pressed};
+                  height: ${radio.control.icon.iconsize.sm.active.pressed};
+                }
+              }
+
+              &:focus {
+                background-color: ${radio.control.container.bgcolor.active.focus};
+
+                &::before {
+                  content: "";
+                  background-color: ${radio.control.icon.iconcolor.active.focus};
+                  width: ${radio.control.icon.iconsize.sm.active.focus};
+                  height: ${radio.control.icon.iconsize.sm.active.focus};
+                }
+              }
+            }
+
+            &:disabled {
+              background-color: ${radio.control.container.bgcolor.active.disabled};
+
+              &::before {
+                content: "";
+                background-color: ${radio.control.icon.iconcolor.active.disabled};
+                width: ${radio.control.icon.iconsize.sm.active.disabled};
+                height: ${radio.control.icon.iconsize.sm.active.disabled};
+              }
+            }
+
+            &[readonly] {
+              background-color: ${radio.control.container.bgcolor.active.readonly};
+
+              &::before {
+                content: "";
+                background-color: ${radio.control.icon.iconcolor.active.readonly};
+                width: ${radio.control.icon.iconsize.sm.active.readonly};
+                height: ${radio.control.icon.iconsize.sm.active.readonly};
               }
             }
           }
 
           &:disabled {
-            background-color: ${Radio.Control.Container.BackgroundColor.Active.Disabled};
+            cursor: not-allowed;
+            background-color: ${radio.control.container.bgcolor.inactive.disabled};
 
             &::before {
               content: "";
-              background-color: ${Radio.Control.Icon.IconColor.Active.Disabled};
-              width: ${Radio.Control.Icon.IconSize.SM.Active.Disabled};
-              height: ${Radio.Control.Icon.IconSize.SM.Active.Disabled};
+              background-color: ${radio.control.icon.iconcolor.inactive.disabled};
+              width: ${radio.control.icon.iconsize.sm.inactive.disabled};
+              height: ${radio.control.icon.iconsize.sm.inactive.disabled};
+            }
+
+            & + .label-wrapper {
+              .blr-form-label-inline {
+                cursor: not-allowed;
+                color: ${formlabel.inlinelabel.textcolor.disabled};
+              }
             }
           }
+        }
 
-          &[readonly] {
-            background-color: ${Radio.Control.Container.BackgroundColor.Active.ReadOnly};
+        &.error {
+          .input-control {
+            background-color: ${radio.control.container.bgcolor.inactive.error};
+
+            &::before {
+              background-color: ${radio.control.icon.iconcolor.inactive.error};
+              width: ${radio.control.icon.iconsize.sm.inactive.error};
+              height: ${radio.control.icon.iconsize.sm.inactive.error};
+            }
+
+            & + .label-wrapper {
+              .blr-form-label-inline {
+                color: ${formlabel.inlinelabel.textcolor.error};
+              }
+            }
+
+            &.checked,
+            &:checked {
+              &::before {
+                width: ${radio.control.icon.iconsize.sm.active.error};
+                height: ${radio.control.icon.iconsize.sm.active.error};
+              }
+            }
+
+            &.checked,
+            &:checked {
+              &::before {
+                width: ${radio.control.icon.iconsize.sm.active.error};
+                height: ${radio.control.icon.iconsize.sm.active.error};
+              }
+            }
+          }
+        }
+
+        &.disabled {
+          pointer-events: none;
+
+          .input-control {
+            background-color: ${radio.control.container.bgcolor.inactive.disabled};
+            width: ${radio.control.container.size.sm};
+            height: ${radio.control.container.size.sm};
 
             &::before {
               content: "";
-              background-color: ${Radio.Control.Icon.IconColor.Active.ReadOnly};
-              width: ${Radio.Control.Icon.IconSize.SM.Active.ReadOnly};
-              height: ${Radio.Control.Icon.IconSize.SM.Active.ReadOnly};
+              background-color: ${radio.control.icon.iconcolor.inactive.disabled};
+              width: ${radio.control.icon.iconsize.sm.inactive.rest};
+              height: ${radio.control.icon.iconsize.sm.inactive.rest};
+            }
+
+            & + .label-wrapper {
+              .blr-form-label-inline {
+                color: ${formlabel.inlinelabel.textcolor.disabled};
+              }
             }
           }
         }
 
-        &:disabled {
-          cursor: not-allowed;
-          background-color: ${Radio.Control.Container.BackgroundColor.Inactive.Disabled};
-         
-          &::before {
-            content: "";
-            background-color: ${Radio.Control.Icon.IconColor.Inactive.Disabled};
-            width: ${Radio.Control.Icon.IconSize.SM.Inactive.Disabled};
-            height: ${Radio.Control.Icon.IconSize.SM.Inactive.Disabled};
-          }
+        &.readonly {
+          .input-control {
+            background-color: ${radio.control.container.bgcolor.inactive.readonly};
+            width: ${radio.control.icon.iconsize.sm.inactive.readonly};
+            height: ${radio.control.icon.iconsize.sm.inactive.readonly};
 
-          & + .label-wrapper {
-            .blr-form-label-inline {
-              cursor: not-allowed;
-              color: ${FormLabel.InlineLabel.TextColor.Disabled};
-            }
-          }
-        }
-      }
-
-      &.error {
-        .input-control {
-          background-color: ${Radio.Control.Container.BackgroundColor.Inactive.Error};
-
-          &::before {
-            background-color: ${Radio.Control.Icon.IconColor.Inactive.Error};
-            width: ${Radio.Control.Icon.IconSize.SM.Inactive.Error};
-            height: ${Radio.Control.Icon.IconSize.SM.Inactive.Error};
-          }
-
-          & + .label-wrapper {
-            .blr-form-label-inline {
-              color: ${FormLabel.InlineLabel.TextColor.Error};
-            }
-          }
-
-          &.checked,
-          &:checked {
             &::before {
-              width: ${Radio.Control.Icon.IconSize.SM.Active.Error};
-              height: ${Radio.Control.Icon.IconSize.SM.Active.Error};
+              content: "";
+              background-color: ${radio.control.icon.iconcolor.inactive.readonly};
+              width: ${radio.control.icon.iconsize.sm.inactive.readonly};
+              height: ${radio.control.icon.iconsize.sm.inactive.readonly};
             }
-          }
 
-          &.checked,
-          &:checked {
-            &::before {
-              width: ${Radio.Control.Icon.IconSize.SM.Active.Error};
-              height: ${Radio.Control.Icon.IconSize.SM.Active.Error};
-            }
-          }
-        }
-      }
-
-      &.disabled {
-        .input-control {
-          background-color: ${Radio.Control.Container.BackgroundColor.Inactive.Disabled};
-          width: ${Radio.Control.Container.Size.SM};
-          height: ${Radio.Control.Container.Size.SM};
-
-          &::before {
-            content: "";
-            background-color: ${Radio.Control.Icon.IconColor.Inactive.Disabled};
-            width: ${Radio.Control.Icon.IconSize.SM.Inactive.Rest};
-            height: ${Radio.Control.Icon.IconSize.SM.Inactive.Rest};
-          }
-
-          & + .label-wrapper {
-            .blr-form-label-inline {
-              color: ${FormLabel.InlineLabel.TextColor.Disabled};
+            & + .label-wrapper {
+              .blr-form-label-inline {
+                color: ${formlabel.inlinelabel.textcolor.readonly};
+              }
             }
           }
         }
-      }
 
-      &.readonly {
-        .input-control {
-          background-color: ${Radio.Control.Container.BackgroundColor.Inactive.ReadOnly};
-          width: ${Radio.Control.Icon.IconSize.SM.Inactive.ReadOnly};
-          height: ${Radio.Control.Icon.IconSize.SM.Inactive.ReadOnly};
+        .blr-form-caption {
+          margin-top: 0;
 
-          &::before {
-            content: "";
-            background-color: ${Radio.Control.Icon.IconColor.Inactive.ReadOnly};
-            width: ${Radio.Control.Icon.IconSize.SM.Inactive.ReadOnly};
-            height: ${Radio.Control.Icon.IconSize.SM.Inactive.ReadOnly};
+          &.sm {
+            padding: ${formcaption.textwrapper.padding.sm};
+            font-family: ${formcaption.text.typography.sm.fontFamily}, sans-serif;
+            font-size: ${formcaption.text.typography.sm.fontSize};
+            line-height: ${formcaption.text.typography.sm.lineHeight};
           }
 
-          & + .label-wrapper {
-            .blr-form-label-inline {
-              color: ${FormLabel.InlineLabel.TextColor.ReadOnly};
-            }
+          &.md {
+            padding: ${formcaption.textwrapper.padding.md};
+            font-family: ${formcaption.text.typography.md.fontFamily}, sans-serif;
+            font-size: ${formcaption.text.typography.md.fontSize};
+            line-height: ${formcaption.text.typography.md.lineHeight};
+          }
+
+          &.lg {
+            padding: ${formcaption.textwrapper.padding.lg};
+            font-family: ${formcaption.text.typography.lg.fontFamily}, sans-serif;
+            font-size: ${formcaption.text.typography.lg.fontSize};
+            line-height: ${formcaption.text.typography.lg.lineHeight};
           }
         }
       }
-
-      .blr-form-caption {
-        margin-top: 0;
-
-        &.sm {
-          padding: ${CaptionComponent.TextWrapper.Padding.SM};
-          font-family: ${CaptionComponent.Text.Typography.SM.fontFamily}, sans-serif;
-          font-size: ${CaptionComponent.Text.Typography.SM.fontSize};
-          line-height: ${CaptionComponent.Text.Typography.SM.lineHeight};
-        }
-
-        &.md {
-          padding: ${CaptionComponent.TextWrapper.Padding.MD};
-          font-family: ${CaptionComponent.Text.Typography.MD.fontFamily}, sans-serif;
-          font-size: ${CaptionComponent.Text.Typography.MD.fontSize};
-          line-height: ${CaptionComponent.Text.Typography.MD.lineHeight};
-        }
-
-        &.lg {
-          padding: ${CaptionComponent.TextWrapper.Padding.LG};
-          font-family: ${CaptionComponent.Text.Typography.LG.fontFamily}, sans-serif;
-          font-size: ${CaptionComponent.Text.Typography.LG.fontSize};
-          line-height: ${CaptionComponent.Text.Typography.LG.lineHeight};
-        }
-      }
-    }
-  `;
-});
+    `;
+  })}
+`;

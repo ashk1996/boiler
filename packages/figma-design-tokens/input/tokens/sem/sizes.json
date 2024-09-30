@@ -4,28 +4,28 @@
       "container": {
         "borderradius": {
           "xs": {
-            "value": "{sys.borderRadius.md}",
+            "value": "{sys.borderradius.md}",
             "type": "borderRadius"
           },
           "sm": {
-            "value": "{sys.borderRadius.md}",
+            "value": "{sys.borderradius.md}",
             "type": "borderRadius"
           },
           "md": {
-            "value": "{sys.borderRadius.md}",
+            "value": "{sys.borderradius.md}",
             "type": "borderRadius"
           },
           "lg": {
-            "value": "{sys.borderRadius.md}",
+            "value": "{sys.borderradius.md}",
             "type": "borderRadius"
           },
           "xl": {
-            "value": "{sys.borderRadius.md}",
+            "value": "{sys.borderradius.md}",
             "type": "borderRadius"
           }
         },
         "borderwidth": {
-          "value": "{sys.borderWidth.medium}",
+          "value": "{sys.borderwidth.medium}",
           "type": "borderWidth"
         }
       }
@@ -34,29 +34,29 @@
       "captionslot": {
         "margintop": {
           "sm": {
-            "value": "{core.dimensionREM.8}",
+            "value": "{core.dimensionrem.8}",
             "type": "spacing"
           },
           "md": {
-            "value": "{core.dimensionREM.8}",
+            "value": "{core.dimensionrem.8}",
             "type": "spacing"
           },
           "lg": {
-            "value": "{core.dimensionREM.8}",
+            "value": "{core.dimensionrem.8}",
             "type": "spacing"
           }
         },
         "margin": {
           "sm": {
-            "value": "{sem.forms.captionslot.margintop.sm} {core.dimensionPX.0} {core.dimensionREM.0} {core.dimensionPX.0}",
+            "value": "{sem.forms.captionslot.margintop.sm} {core.dimensionpx.0} {core.dimensionrem.0} {core.dimensionpx.0}",
             "type": "spacing"
           },
           "md": {
-            "value": "{sem.forms.captionslot.margintop.md} {core.dimensionPX.0} {core.dimensionREM.0} {core.dimensionPX.0}",
+            "value": "{sem.forms.captionslot.margintop.md} {core.dimensionpx.0} {core.dimensionrem.0} {core.dimensionpx.0}",
             "type": "spacing"
           },
           "lg": {
-            "value": "{sem.forms.captionslot.margintop.lg} {core.dimensionPX.0} {core.dimensionREM.0} {core.dimensionPX.0}",
+            "value": "{sem.forms.captionslot.margintop.lg} {core.dimensionpx.0} {core.dimensionrem.0} {core.dimensionpx.0}",
             "type": "spacing"
           }
         }
@@ -65,29 +65,29 @@
         "container": {
           "padding_v": {
             "sm": {
-              "value": "{core.dimensionREM.8}",
+              "value": "{core.dimensionrem.8}",
               "type": "spacing"
             },
             "md": {
-              "value": "{core.dimensionREM.8}",
+              "value": "{core.dimensionrem.8}",
               "type": "spacing"
             },
             "lg": {
-              "value": "{core.dimensionREM.12}",
+              "value": "{core.dimensionrem.12}",
               "type": "spacing"
             }
           },
           "padding_h": {
             "sm": {
-              "value": "{core.dimensionPX.12}",
+              "value": "{core.dimensionpx.12}",
               "type": "spacing"
             },
             "md": {
-              "value": "{core.dimensionPX.12}",
+              "value": "{core.dimensionpx.12}",
               "type": "spacing"
             },
             "lg": {
-              "value": "{core.dimensionPX.16}",
+              "value": "{core.dimensionpx.16}",
               "type": "spacing"
             }
           },
@@ -106,33 +106,49 @@
             }
           },
           "borderradius": {
-            "value": "{sys.borderRadius.md}",
+            "value": "{sys.borderradius.md}",
             "type": "borderRadius"
           },
           "borderwidth": {
             "rest": {
-              "value": "{sys.borderWidth.medium}",
+              "value": "{sys.borderwidth.medium}",
               "type": "borderWidth"
             },
             "hover": {
-              "value": "{sys.borderWidth.medium}",
+              "value": "{sys.borderwidth.medium}",
               "type": "borderWidth"
             },
             "pressed": {
-              "value": "{sys.borderWidth.medium}",
+              "value": "{sys.borderwidth.medium}",
               "type": "borderWidth"
             },
             "focus": {
-              "value": "{sys.borderWidth.bold}",
+              "value": "{sys.borderwidth.bold}",
               "type": "borderWidth"
             },
             "disabled": {
-              "value": "{sys.borderWidth.medium}",
+              "value": "{sys.borderwidth.medium}",
               "type": "borderWidth"
             },
             "readonly": {
-              "value": "{sys.borderWidth.medium}",
+              "value": "{sys.borderwidth.medium}",
               "type": "borderWidth"
+            }
+          }
+        },
+        "icon": {
+          "iconsize": {
+            "sm": {
+              "value": "{core.dimensionrem.16}",
+              "type": "sizing"
+            },
+            "md": {
+              "value": "{core.dimensionrem.24}",
+              "type": "sizing"
+            },
+            "lg": {
+              "value": "{core.dimensionrem.24}",
+              "type": "sizing"
             }
           }
         }
@@ -140,29 +156,29 @@
       "inputslot": {
         "margin_v": {
           "sm": {
-            "value": "{core.dimensionREM.0}",
+            "value": "{core.dimensionrem.0}",
             "type": "spacing"
           },
           "md": {
-            "value": "{core.dimensionREM.0}",
+            "value": "{core.dimensionrem.0}",
             "type": "spacing"
           },
           "lg": {
-            "value": "{core.dimensionREM.0}",
+            "value": "{core.dimensionrem.0}",
             "type": "spacing"
           }
         },
         "margin_h": {
           "sm": {
-            "value": "{core.dimensionPX.0}",
+            "value": "{core.dimensionpx.0}",
             "type": "spacing"
           },
           "md": {
-            "value": "{core.dimensionPX.0}",
+            "value": "{core.dimensionpx.0}",
             "type": "spacing"
           },
           "lg": {
-            "value": "{core.dimensionPX.0}",
+            "value": "{core.dimensionpx.0}",
             "type": "spacing"
           }
         },
@@ -198,15 +214,15 @@
         },
         "padding_bottom": {
           "sm": {
-            "value": "{core.dimensionREM.8}",
+            "value": "{core.dimensionrem.8}",
             "type": "spacing"
           },
           "md": {
-            "value": "{core.dimensionREM.8}",
+            "value": "{core.dimensionrem.8}",
             "type": "spacing"
           },
           "lg": {
-            "value": "{core.dimensionREM.8}",
+            "value": "{core.dimensionrem.8}",
             "type": "spacing"
           }
         }
@@ -215,7 +231,7 @@
     "global": {
       "focusring": {
         "borderwidth": {
-          "value": "{sys.borderWidth.heavy}",
+          "value": "{sys.borderwidth.heavy}",
           "type": "borderWidth"
         }
       }

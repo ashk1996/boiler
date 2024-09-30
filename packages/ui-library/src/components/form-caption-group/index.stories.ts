@@ -1,9 +1,9 @@
-import { BlrFormCaptionGroupType } from './index';
-import { BlrFormCaptionGroupRenderFunction } from './renderFunction';
+import { BlrFormCaptionGroupType } from './index.js';
+import { BlrFormCaptionGroupRenderFunction } from './renderFunction.js';
 import { html } from 'lit-html';
-import { BlrFormCaptionRenderFunction } from '../form-caption/renderFunction';
-import { FormSizes } from '../../globals/constants';
-import '../../index';
+import { BlrFormCaptionRenderFunction } from '../form-caption/renderFunction.js';
+import { FormSizes } from '../../globals/constants.js';
+import '../../index.js';
 
 export default {
   title: 'Components/Form Caption Group',
@@ -74,6 +74,7 @@ BlrFormCaptionGroup.storyName = 'Form Caption Group';
 
 const args: BlrFormCaptionGroupType = {
   sizeVariant: 'sm',
+  theme: 'Light',
 };
 
 BlrFormCaptionGroup.args = args;

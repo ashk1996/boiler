@@ -1,31 +1,20 @@
 /* eslint-disable no-console */
 import { html } from 'lit-html';
-import { BlrTextareaType } from './index';
-import { BlrTextareaRenderFunction } from './renderFunction';
+import { BlrTextareaType } from './index.js';
+import { BlrTextareaRenderFunction } from './renderFunction.js';
 import { PureIconKeys } from '@boiler/icons';
 
 // this loads the all components instances and registers their html tags
-import '../../index';
-import { Themes } from '../../foundation/_tokens-generated/index.themes';
-import { FormSizes, Resizes } from '../../globals/constants';
-
-// Shared Style inside the Stories
-const sharedStyles = html`
-  <style>
-    .stories-textarea {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
-      gap: 1rem;
-    }
-  </style>
-`;
+import '../../index.js';
+import { Themes } from '../../foundation/_tokens-generated/index.themes.js';
+import { DisplayOptions, FormSizes, Resizes } from '../../globals/constants.js';
 
 // Default parameters for Textarea component
 const defaultParams: BlrTextareaType = {
   theme: 'Light',
   sizeVariant: 'md',
   resize: 'both',
+  textAreaDisplay: 'block',
   cols: 40,
   rows: 4,
   placeholder: 'Placeholder-text',
@@ -47,7 +36,7 @@ const defaultParams: BlrTextareaType = {
   required: false,
   hasError: false,
   errorMessage: '',
-  errorMessageIcon: 'blr360',
+  errorMessageIcon: undefined,
   arialabel: 'Text Area',
   textAreaId: '#textAreaId',
   name: 'Text Area',
@@ -85,6 +74,7 @@ export default {
       options: FormSizes,
       control: { type: 'number' },
       name: 'cols',
+      if: { arg: 'textAreaDisplay', neq: 'block' },
       description: 'Enter amount of columns the component should hold.',
       defaultValue: '20',
       table: {
@@ -95,8 +85,16 @@ export default {
       options: FormSizes,
       control: { type: 'number' },
       name: 'rows',
-      description: 'Enter amount of rows the component should have.',
+      description: 'Enter amount of rows the component should have. The row height has a defined minimum limit.',
       defaultValue: '5',
+      table: {
+        category: 'Appearance',
+      },
+    },
+    textAreaDisplay: {
+      description: 'Choose if textarea should fill its parent container.',
+      options: DisplayOptions,
+      control: { type: 'radio' },
       table: {
         category: 'Appearance',
       },
@@ -165,7 +163,7 @@ export default {
     },
     hasHint: {
       description: ' Choose if component has a hint message. ',
-      defaultValue: true,
+      defaultValue: false,
       control: {
         type: 'boolean',
       },
@@ -377,13 +375,7 @@ Text Area allows users to input and edit multiline text. Unlike a simple Input F
 };
 
 //Main Component for Textarea
-export const TextArea = (params: BlrTextareaType) =>
-  html`${sharedStyles}
-    <div class="wrapper">
-      ${BlrTextareaRenderFunction({
-        ...params,
-      })}
-    </div> `;
+export const TextArea = (params: BlrTextareaType) => html`${BlrTextareaRenderFunction({ ...params })}`;
 TextArea.args = defaultParams;
 
 //disabledArgTypesTable to deactivate the controls-Panel for a story in storybook
@@ -443,7 +435,6 @@ const disabledArgTypes = generateDisabledArgTypes(argTypesToDisable);
  */
 export const SizeVariant = () => {
   return html`
-    ${sharedStyles}
     <div class="wrapper">
       <div class="stories-textarea">
         ${BlrTextareaRenderFunction({
@@ -451,6 +442,7 @@ export const SizeVariant = () => {
           theme: 'Light',
           sizeVariant: 'sm',
           label: 'Text Area SM',
+          hintMessage: '',
           placeholder: '',
           value: '',
         })}
@@ -459,6 +451,7 @@ export const SizeVariant = () => {
           theme: 'Light',
           sizeVariant: 'md',
           label: 'Text Area MD',
+          hintMessage: '',
           placeholder: '',
           value: '',
         })}
@@ -467,6 +460,7 @@ export const SizeVariant = () => {
           theme: 'Light',
           sizeVariant: 'lg',
           label: 'Text Area LG',
+          hintMessage: '',
           placeholder: '',
           value: '',
         })}
@@ -485,7 +479,6 @@ SizeVariant.story = { name: ' ' };
  */
 export const Resize = () => {
   return html`
-    ${sharedStyles}
     <div class="wrapper">
       <div class="stories-textarea">
         <div>
@@ -496,6 +489,7 @@ export const Resize = () => {
             label: 'Auto resize',
             placeholder: '',
             value: '',
+            hintMessage: '',
             resize: 'both',
           })}
         </div>
@@ -505,6 +499,7 @@ export const Resize = () => {
             theme: 'Light',
             sizeVariant: 'md',
             label: 'Horizontal resize',
+            hintMessage: '',
             placeholder: '',
             value: '',
             resize: 'horizontal',
@@ -517,6 +512,7 @@ export const Resize = () => {
             sizeVariant: 'md',
             label: 'Vertical resize',
             placeholder: '',
+            hintMessage: '',
             value: '',
             resize: 'vertical',
           })}
@@ -528,6 +524,7 @@ export const Resize = () => {
             sizeVariant: 'md',
             label: 'No resize',
             placeholder: '',
+            hintMessage: '',
             value: '',
             resize: 'none',
           })}
@@ -548,7 +545,6 @@ Resize.argTypes = {
  */
 export const Placeholder = () => {
   return html`
-    ${sharedStyles}
     <div class="wrapper">
       <div class="stories-textarea">
         ${BlrTextareaRenderFunction({
@@ -557,6 +553,7 @@ export const Placeholder = () => {
           sizeVariant: 'md',
           label: 'With placeholder',
           labelAppendix: '',
+          hintMessage: '',
           placeholder: 'Add a message here',
           value: '',
         })}
@@ -564,6 +561,7 @@ export const Placeholder = () => {
           ...defaultParams,
           theme: 'Light',
           sizeVariant: 'md',
+          hintMessage: '',
           label: 'Without placeholder',
           labelAppendix: '',
           placeholder: '',
@@ -587,7 +585,6 @@ Placeholder.story = { name: ' ' };
  */
 export const Disabled = () => {
   return html`
-    ${sharedStyles}
     <div class="wrapper">
       <div class="stories-textarea">
         ${BlrTextareaRenderFunction({
@@ -596,6 +593,7 @@ export const Disabled = () => {
           sizeVariant: 'md',
           label: 'Disabled',
           placeholder: '',
+          hintMessage: '',
           labelAppendix: '',
           disabled: true,
           value: '',
@@ -617,7 +615,6 @@ Disabled.story = {
  */
 export const Readonly = () => {
   return html`
-    ${sharedStyles}
     <div class="wrapper">
       <div class="stories-textarea">
         ${BlrTextareaRenderFunction({
@@ -625,6 +622,7 @@ export const Readonly = () => {
           theme: 'Light',
           sizeVariant: 'md',
           label: 'Readonly',
+          hintMessage: '',
           placeholder: '',
           readonly: true,
           value: '',
@@ -645,7 +643,6 @@ Readonly.argTypes = {
  */
 export const Required = () => {
   return html`
-    ${sharedStyles}
     <div class="wrapper">
       <div class="stories-textarea">
         ${BlrTextareaRenderFunction({
@@ -654,6 +651,7 @@ export const Required = () => {
           sizeVariant: 'md',
           label: 'Label-text',
           placeholder: '',
+          hintMessage: '',
           required: true,
           labelAppendix: '(required)',
           value: '',
@@ -675,7 +673,6 @@ Required.story = {
  */
 export const HasError = () => {
   return html`
-    ${sharedStyles}
     <div class="wrapper">
       <div class="stories-textarea">
         ${BlrTextareaRenderFunction({
@@ -684,6 +681,7 @@ export const HasError = () => {
           sizeVariant: 'md',
           placeholder: '',
           hasError: true,
+          hintMessage: '',
           errorMessageIcon: undefined,
           label: 'Error',
           value: '',
@@ -700,12 +698,11 @@ HasError.argTypes = {
 /**
  * ## Dependencies
  * ### Form Label
- * The Text Area component can display an optional Form Label component, consisting of a label and a label appendix. For more information have a look at the internal [Form Label](?path=/docs/design-system-web-components-internal-components-formlabel--docs) component.
+ * The Text Area component can display an optional Form Label component, consisting of a label and a label appendix. For more information have a look at the internal [Form Label](?path=/docs/components-form-label--docs) component.
  */
 // States FormLabel
 export const FormLabel = () => {
   return html`
-    ${sharedStyles}
     <div class="wrapper">
       <div class="stories-textarea">
         ${BlrTextareaRenderFunction({
@@ -713,6 +710,7 @@ export const FormLabel = () => {
           theme: 'Light',
           sizeVariant: 'md',
           placeholder: '',
+          hintMessage: '',
           label: 'With label',
           labelAppendix: '(with appendix)',
           value: '',
@@ -724,6 +722,7 @@ export const FormLabel = () => {
           placeholder: 'Without label',
           label: ' ',
           labelAppendix: '',
+          hintMessage: '',
           hasHint: false,
           value: '',
         })}
@@ -738,11 +737,10 @@ FormLabel.story = {
   name: ' ',
 };
 /**
- * The Text Area component can display an optional hint message and error message with or without icons. Both captions can be combined. For more information have a look at the internal <a href="/docs/design-system-web-components-internal-components-formcaptiongroup--docs">Form Caption Group</a> component.
+ * The Text Area component can display an optional hint message and error message with or without icons. Both captions can be combined. For more information have a look at the internal <a href="/docs/components-form-caption-group--docs">Form Caption Group</a> component.
  */
 export const FormCaptionGroup = () => {
   return html`
-    ${sharedStyles}
     <div class="wrapper">
       <div class="stories-textarea">
         ${BlrTextareaRenderFunction({
@@ -751,6 +749,7 @@ export const FormCaptionGroup = () => {
           sizeVariant: 'md',
           placeholder: '',
           label: 'Hint message',
+          hintMessage: 'This is a hint message',
           hasHint: true,
           hintMessageIcon: 'blrInfo',
           labelAppendix: '',
@@ -779,11 +778,10 @@ FormCaptionGroup.argTypes = {
 
 // States Counter
 /**
- * The Text Area component can display an optional counter. The threshold for the warning and error message can be set individually. For more information have a look at the internal [Counter](?path=/docs/design-system-web-components-internal-components-counter--docs) component.
+ * The Text Area component can display an optional counter. The threshold for the warning and error message can be set individually. For more information have a look at the internal [Counter](?path=/docs/components-counter--docs) component.
  */
 export const Counter = () => {
   return html`
-    ${sharedStyles}
     <div class="wrapper">
       <div class="stories-textarea">
         ${BlrTextareaRenderFunction({
@@ -796,14 +794,17 @@ export const Counter = () => {
           warningLimitType: 'warningLimitInt',
           warningLimitInt: 105,
           warningLimitPer: 75,
+          hintMessage: '',
         })}
       </div>
     </div>
   `;
 };
+
 Counter.argTypes = {
   ...disabledArgTypes,
 };
+
 Counter.parameters = {
   backgrounds: {
     default: '',

@@ -1,7 +1,7 @@
-import '@boiler/ui-library/dist/';
+import '@boiler/ui-library';
 
-import { BlrButtonTextRenderFunction } from './renderFunction';
-import type { BlrButtonTextType } from '.';
+import { BlrButtonTextRenderFunction } from './renderFunction.js';
+import type { BlrButtonTextType } from './index.js';
 
 import { fixture, expect } from '@open-wc/testing';
 import { querySelectorDeep } from 'query-selector-shadow-dom';
@@ -9,7 +9,6 @@ import { querySelectorDeep } from 'query-selector-shadow-dom';
 const sampleParams: BlrButtonTextType = {
   label: 'Button',
   icon: 'blr360',
-  hasIcon: true,
   iconPosition: 'leading',
   loading: false,
   disabled: false,
@@ -221,11 +220,15 @@ describe('blr-button-text', () => {
     const button = querySelectorDeep('span', element.getRootNode() as HTMLElement);
     let fired = false;
 
-    element.getRootNode()?.addEventListener('blrFocus', () => {
+    element.addEventListener('blrFocus', () => {
       fired = true;
     });
 
-    button?.focus();
+    expect(button).to.exist;
+
+    if (button) {
+      button.dispatchEvent(new FocusEvent('focus'));
+    }
 
     expect(fired).to.be.true;
   });
@@ -251,12 +254,16 @@ describe('blr-button-text', () => {
     const button = querySelectorDeep('span', element.getRootNode() as HTMLElement);
     let fired = false;
 
-    element.getRootNode()?.addEventListener('blrBlur', () => {
+    element.addEventListener('blrBlur', () => {
       fired = true;
     });
 
-    button?.focus();
-    button?.blur();
+    expect(button).to.exist;
+
+    if (button) {
+      button.dispatchEvent(new FocusEvent('focus'));
+      button.dispatchEvent(new FocusEvent('blur'));
+    }
 
     expect(fired).to.be.true;
   });
