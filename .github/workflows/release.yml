@@ -25,3 +25,5 @@ jobs:
           release-type: node
           package-name: '@ashk1996/boiler'
           token: ${{ secrets.GITHUB_TOKEN }}
+          target-branch: main
+          branch: main
