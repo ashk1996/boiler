@@ -19,8 +19,9 @@ jobs:
           node-version: '18.x'
 
       - name: Release Please Action
-        uses: google-github-actions/release-please-action@v3
+        uses: googleapis/release-please-action@v4
+        id: release
         with:
           release-type: node
           package-name: '@ashk1996/boiler'
-          branch: main
+          token: ${{ secrets.GITHUB_TOKEN }}
