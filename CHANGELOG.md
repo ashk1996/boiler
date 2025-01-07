@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/ashk1996/boiler/compare/v1.0.0...v1.1.0) (2025-01-07)
+
+
+### Features
+
+* **ci:** minor version bump ([59e32d0](https://github.com/ashk1996/boiler/commit/59e32d0807dfafaaaa131f4f66176d57b9a0dd75))
+
 ## 1.0.0 (2024-10-08)
 
 
