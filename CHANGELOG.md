@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/ashk1996/boiler/compare/v1.1.0...v2.0.0) (2025-01-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **ci:** breaking change
+
+### Bug Fixes
+
+* **ci:** breaking change ([5379be0](https://github.com/ashk1996/boiler/commit/5379be0ea0a034373395f6483a2bd2c1b1e77f56))
+
 ## [1.1.0](https://github.com/ashk1996/boiler/compare/v1.0.0...v1.1.0) (2025-01-07)
 
 
