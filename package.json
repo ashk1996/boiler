@@ -1,7 +1,7 @@
 {
   "name": "@ashk1996/boiler",
   "version": "2.1.0",
-  "description": "repo for the B01LER Design System",
+  "description": "Monorepo for the B01LER Design System",
   "main": "",
   "types": "",
   "scripts": {
