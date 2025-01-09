@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.1.0](https://github.com/ashk1996/boiler/compare/v2.0.0...v2.1.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* **release:** force minor version bump in commit ([dca1d8f](https://github.com/ashk1996/boiler/commit/dca1d8f96dc0237de14435cde493e1d7cf44372b))
+
+
+### Miscellaneous Chores
+
+* release 2.1.0 ([41b8f5b](https://github.com/ashk1996/boiler/commit/41b8f5b169e6b589d08594f67ff6dd1184a46020))
+* release 2.1.0 ([9ac1680](https://github.com/ashk1996/boiler/commit/9ac16808544e4f7ed3b41aebb0ecf0816577688c))
+
 ## [2.0.0](https://github.com/ashk1996/boiler/compare/v1.1.0...v2.0.0) (2025-01-07)
 
 
