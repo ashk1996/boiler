@@ -13,6 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Check if commit message contains 'release'
+        id: check_commit_message
+        run: |
+          # Get the latest commit message
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          echo "Commit message: $COMMIT_MESSAGE"
+
+          # Check if the commit message contains the word 'release'
+          if [[ "$COMMIT_MESSAGE" != *"release"* ]]; then
+            echo "Commit message doesn't contain 'release'. Skipping release."
+            exit 0
+          fi
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
