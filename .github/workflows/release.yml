@@ -21,7 +21,7 @@ jobs:
           echo "Commit message: $COMMIT_MESSAGE"
 
           # Check if the commit message contains the word 'release'
-          if [[ "$COMMIT_MESSAGE" != *"release"* ]]; then
+          if [[ "$COMMIT_MESSAGE" != *"chore(release)"* ]]; then
             echo "Commit message doesn't contain 'release'. Skipping release."
             exit 0
           fi
