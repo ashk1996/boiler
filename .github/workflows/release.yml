@@ -25,7 +25,7 @@ jobs:
             echo "Commit message doesn't contain 'chore(release)'. Skipping release."
             echo "skip_release=true" >> $GITHUB_ENV  # Set an environment variable to skip the release step
           else
-            echo "Commit message contains 'chore(release)'. Proceeding with release."
+            echo "Commit message contain 'chore(release)'. Proceeding with release."
             echo "skip_release=false" >> $GITHUB_ENV  # Proceed with the release step
           fi
 
