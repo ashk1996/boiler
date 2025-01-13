@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.2.0](https://github.com/ashk1996/boiler/compare/v2.1.0...v2.2.0) (2025-01-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **ui:** breaking change commit
+
+### Features
+
+* **ci:** trigger new version ([d82b19e](https://github.com/ashk1996/boiler/commit/d82b19e11a0e6fd766ed569ccd751e66ce88f062))
+* **ci:** trigger new version ([68ed437](https://github.com/ashk1996/boiler/commit/68ed437f07916ff80d7a7c4958596ba19d06bc3c))
+* **release:** release please pr on dev branch ([220e8ab](https://github.com/ashk1996/boiler/commit/220e8ab21635a964e566c35b415426c6b839bdbe))
+
+
+### Bug Fixes
+
+* **release:** version of package ([e090ac0](https://github.com/ashk1996/boiler/commit/e090ac0c1e8720f8d23b26b7dc49bfa86a856791))
+* **ui:** breaking change commit ([fede18b](https://github.com/ashk1996/boiler/commit/fede18b52f09ae8bc5cdee16e4e2c04f17494908))
+
+
+### Miscellaneous Chores
+
+* release 2.2.0 ([ac229c3](https://github.com/ashk1996/boiler/commit/ac229c3c0f521766ff8a628f525a12808df20711))
+
 ## [2.1.0](https://github.com/ashk1996/boiler/compare/v2.0.0...v2.1.0) (2025-01-08)
 
 
